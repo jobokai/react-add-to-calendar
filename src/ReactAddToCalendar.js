@@ -1,6 +1,9 @@
-import React from "react";
+// import React from "react"; // Commenting out so it is not included in package.
 import PropTypes from "prop-types";
 import './styles/ReactAddToCalendar.scss';
+import {faApple, faGoogle, faYahoo, faWindows} from '@fortawesome/free-brands-svg-icons';
+import { faCalendarPlus } from '@fortawesome/free-regular-svg-icons';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 
 import helpersClass from "./helpers";
 const helpers = new helpersClass();
@@ -93,11 +96,8 @@ export default class ReactAddToCalendar extends React.Component {
 
       let icon = null;
       if (self.props.displayItemIcons) {
-        let currentIcon =
-          currentItem === "outlook" || currentItem === "outlookcom"
-            ? "windows"
-            : currentItem;
-        icon = <i className={"fab fa-" + currentIcon} />;
+        let currentIcon = currentItem === "outlook" || currentItem === "outlookcom" ? faWindows : currentItem === "apple" ? faApple : currentItem === "google" ? faGoogle : faYahoo;
+        icon = <FontAwesomeIcon icon={currentIcon} />;
       }
 
       return (
@@ -133,20 +133,9 @@ export default class ReactAddToCalendar extends React.Component {
 
     if (template[0] !== "textOnly") {
       const iconPlacement = this.props.buttonTemplate[template];
-      const buttonClassPrefix =
-        this.props.buttonIconClass === "react-add-to-calendar__icon--"
-          ? `${this.props.buttonIconClass}${iconPlacement}`
-          : this.props.buttonIconClass;
-      const iconPrefix = this.props.useFontAwesomeIcons ? "fab fa-" : "";
 
-      const mainButtonIconClass =
-        template[0] === "caret"
-          ? this.state.optionsOpen ? "caret-up" : "caret-down"
-          : template[0];
 
-      let buttonIconClass = `${buttonClassPrefix} ${iconPrefix}${mainButtonIconClass}`;
-
-      buttonIcon = <i className={buttonIconClass} />;
+      buttonIcon = <FontAwesomeIcon icon={faCalendarPlus} />;
       buttonLabel =
         iconPlacement === "right" ? (
           <span>
