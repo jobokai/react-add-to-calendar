@@ -1,53 +1,47 @@
 var webpack = require('webpack')
+const path = require('path');
+
+const srcPath = path.resolve(__dirname, 'src');
+const distPath = path.resolve(__dirname, 'build');
 
 module.exports = {
-  entry: './src/ReactAddToCalendar',
   output: {
-    libraryTarget: 'umd',
-    library: 'ReactAddToCalendar',
-    path: './dist/'
+    filename: 'ReactAddToCalendar.min.js',
+    path: distPath,
+    libraryTarget: 'commonjs'
   },
+  name: 'ReactAddToCalendar',
+  entry: './src/ReactAddToCalendar.js',
   module: {
-    loaders: [
+    rules: [
       {
-        test: /\.js?$/,
-        loader: 'babel',
-        exclude: /node_modules/
+        test: /\.scss$/,
+        loader: "style-loader!css-loader!sass-loader"
+      },
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        use: {
+          loader: "babel-loader",
+          options: {
+            presets: ['@babel/preset-react']
+          }
+        }
+      },
+      {
+        test: /\.(png|jpg|gif)$/i,
+        use: [
+          {
+            loader: 'url-loader',
+            options: {
+              limit: 8192
+            }
+          }
+        ]
       }
     ]
   },
-  resolve: {
-    extensions: ['', '.js', '.jsx']
-  },
-  externals: [
-    {
-      'react-dom': {
-        root: 'ReactDOM',
-        commonjs2: 'react-dom',
-        commonjs: 'react-dom',
-        amd: 'react-dom'
-      }
-    },
-    {
-      'react': {
-        root: 'React',
-        commonjs2: 'react',
-        commonjs: 'react',
-        amd: 'react'
-      }
-    },
-    {
-      'moment': {
-        root: 'moment',
-        commonjs2: 'moment',
-        commonjs: 'moment',
-        amd: 'moment'
-      }
-    }
-  ],
-  node: { Buffer: false },
   plugins: [
-    new webpack.optimize.DedupePlugin(),
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV)
     })

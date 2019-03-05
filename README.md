@@ -9,6 +9,8 @@
 
 A simple, customizable, and reusable Add to Calendar button component for React ([Demo](https://jasonsalzman.github.io/react-add-to-calendar/))
 
+This is a fork of the React Add To Calendar Button built by (jasonsalzman)
+
 ## Installation
 
 The package can be installed via NPM:

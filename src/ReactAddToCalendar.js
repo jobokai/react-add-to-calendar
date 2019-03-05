@@ -1,5 +1,6 @@
-import React, { Component } from "react";
+import React from "react";
 import PropTypes from "prop-types";
+import './styles/ReactAddToCalendar.scss';
 
 import helpersClass from "./helpers";
 const helpers = new helpersClass();
@@ -96,7 +97,7 @@ export default class ReactAddToCalendar extends React.Component {
           currentItem === "outlook" || currentItem === "outlookcom"
             ? "windows"
             : currentItem;
-        icon = <i className={"fa fa-" + currentIcon} />;
+        icon = <i className={"fab fa-" + currentIcon} />;
       }
 
       return (
@@ -136,7 +137,7 @@ export default class ReactAddToCalendar extends React.Component {
         this.props.buttonIconClass === "react-add-to-calendar__icon--"
           ? `${this.props.buttonIconClass}${iconPlacement}`
           : this.props.buttonIconClass;
-      const iconPrefix = this.props.useFontAwesomeIcons ? "fa fa-" : "";
+      const iconPrefix = this.props.useFontAwesomeIcons ? "fab fa-" : "";
 
       const mainButtonIconClass =
         template[0] === "caret"
