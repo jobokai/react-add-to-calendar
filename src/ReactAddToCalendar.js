@@ -1,4 +1,4 @@
-// import React from "react"; // Commenting out so it is not included in package.
+import React from "react";
 import PropTypes from "prop-types";
 import './styles/ReactAddToCalendar.scss';
 import {faApple, faGoogle, faYahoo, faWindows} from '@fortawesome/free-brands-svg-icons';
