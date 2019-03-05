@@ -5,10 +5,10 @@ const getCSSModuleLocalIdent = require('react-dev-utils/getCSSModuleLocalIdent')
 const TerserPlugin = require('terser-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+// const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 const srcPath = path.resolve(__dirname, 'src');
-const distPath = path.resolve(__dirname, 'build');
+const distPath = path.resolve(__dirname, 'dist');
 
 // style files regexes
 const cssRegex = /\.css$/;
@@ -52,7 +52,7 @@ const getStyleLoaders = (cssOptions, preProcessor) => {
 
 module.exports = {
   output: {
-    filename: 'ReactAddToCalendar.min.js',
+    filename: 'react-add-to-calendar.min.js',
     path: distPath,
     libraryTarget: 'commonjs'
   },
@@ -133,9 +133,9 @@ module.exports = {
       'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV)
     }),
     new MiniCssExtractPlugin({
-      filename: 'ReactAddToCalendar.min.css',
+      filename: 'react-add-to-calendar.min.css',
       path: distPath
     }),
-    new BundleAnalyzerPlugin(),
+    // new BundleAnalyzerPlugin(),
   ]
 }
